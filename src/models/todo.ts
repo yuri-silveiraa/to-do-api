@@ -1,25 +1,26 @@
 import { Model, DataTypes } from "sequelize"
 import { sequelize } from "../instances/mysql"
 
-export interface PhraseInstance extends Model {
+export interface TodoInstance extends Model {
     id: number,
-    author: string,
-    txt: string
+    title: string,
+    done: boolean
 }
 
-export const Phrase = sequelize.define<PhraseInstance>('Phrase', {
+export const Todo = sequelize.define<TodoInstance>('Todo', {
     id: {
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
-    author: {
+    title: {
         type: DataTypes.STRING
     },
-    txt: {
-        type: DataTypes.STRING
+    done: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
     }
 },{
-    tableName: "Phrases",
+    tableName: "todos",
     timestamps: false
 })
